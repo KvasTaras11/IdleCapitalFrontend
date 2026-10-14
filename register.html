@@ -9,21 +9,27 @@
 <body>
     <h2>IDLE CAPITAL</h2>
     <div class="container">
-        <div class="login__card">
+        <div class="login__card register__card">
             <div class="email__login">
-
-
                 <div class="input__group">
-                    <input type="text" id="loginInput" placeholder="Email or Phone">
+                    <input type="text" id="nickname" name="nickname" placeholder="Username" aria-label="Username" autocomplete="username">
                 </div>
                 <div class="input__group">
-                    <input type="password" id="password" placeholder="password">
+                    <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email">
+                </div>
+                <div class="input__group">
+                    <input type="tel" id="phone" name="phone" placeholder="Phonenumber" aria-label="Phone number" autocomplete="tel">
+                </div>
+                <div class="input__group">
+                    <input type="password" id="password" name="password" placeholder="Password" aria-label="Password" autocomplete="new-password">
                 </div>
             </div>
-
-            <button onclick="login()">Sign Up</button>
+            <button type="button" onclick="register()">Sign up</button>
+            <hr aria-hidden="true">
+            <div id="error" class="error-msg" role="alert" aria-live="polite"></div>
         </div>
     </div>
+
 
 
 
