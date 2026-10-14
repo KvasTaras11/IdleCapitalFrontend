@@ -82,3 +82,55 @@ hr {
     margin-top: 25px;
     width: 64px;
 }
+
+
+
+.register__card {
+    position: relative;
+    width: 520px;
+    max-width: calc(100vw - 32px);
+    height: 546px;
+}
+
+.register__card .email__login {
+    margin-top: 54px;
+    gap: 20px;
+    width: 310px;
+    max-width: calc(100% - 48px);
+}
+
+.register__card .input__group input {
+    width: 100%;
+    border-radius: 16px;
+    padding-left: 16px;
+}
+
+.register__card button {
+    position: relative;
+    flex-shrink: 0;
+    width: 204px;
+    height: 73px;
+    margin-top: 36px;
+    border: none;
+    border-radius: 40px;
+    color: #151f28;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.register__card hr {
+        top: 388px;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-top: 3px solid white;
+}
+
+.register__card .error-msg {
+    position: relative;
+    margin: 18px 24px 0;
+    color: #aad7ed;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
