@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Capital — Главная</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: #1e293b; border-radius: 16px; padding: 2rem; width: 380px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #334155; text-align: center; }
+        h2 { margin-top: 0; color: #38bdf8; }
+        button { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #0284c7; color: white; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #0369a1; }
+        .btn-click { background: #22c55e; font-size: 1.2rem; padding: 20px; border-radius: 50%; width: 140px; height: 140px; margin: 20px auto; display: block; box-shadow: 0 0 15px rgba(34, 197, 94, 0.4); }
+        .btn-click:hover { background: #16a34a; transform: scale(1.05); }
+        .btn-click:active { transform: scale(0.95); }
+        .stat-box { background: #0f172a; padding: 12px; border-radius: 8px; margin-bottom: 12px; text-align: left; }
+        .stat-value { font-size: 1.4rem; font-weight: bold; color: #e2e8f0; text-align: center; }
+    </style>
+</head>
+<body>
+
+
+    <div class="card">
+        <h2>Idle Capital</h2>
+        
+        <div class="stat-box">
+            <div style="font-size: 0.85rem; color: #94a3b8;">Баланс</div>
+            <div class="stat-value" id="balance">$0</div>
+        </div>
+
+        <div class="stat-box">
+            <div>Уровень клика: <span id="level">1</span></div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">
+                След. уровень: <span id="next-cost">200</span>
+            </div>
+        </div>
+
+        <button class="btn-click" onclick="doClick()">КЛИК!</button>
+
+        <button onclick="logout()" style="background: #ef4444; margin-top: 10px;">Выйти</button>
+    </div>
+
+    <script>
+        const API_URL = 'https://localhost:7025'; // Укажите порт вашего API
+
+        // При загрузке страницы проверяем сессию
+        async function loadUserData() {
+            try {
+                const res = await fetch(`${API_URL}/api/home/me`, { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    updateUI(data.balance, data.currentLevel, data.nextLevelCost);
+                } else {
+                    // Если не авторизован — кидаем на страницу входа
+                    window.location.href = 'login.html';
+                }
+            } catch (err) {
+                console.error('Ошибка загрузки данных', err);
+            }
+        }
+
+        async function doClick() {
+            try {
+                const res = await fetch(`${API_URL}/api/home/click`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    updateUI(data.balance, data.currentLevel, data.nextLevelCost);
+                } else if (res.status === 401) {
+                    window.location.href = 'login.html';
+                }
+            } catch (err) {
+                console.error('Ошибка клика', err);
+            }
+        }
+
+        function updateUI(balance, level, nextCost) {
+            document.getElementById('balance').innerText = '$' + balance;
+            document.getElementById('level').innerText = level;
+            document.getElementById('next-cost').innerText = nextCost;
+        }
+
+        async function logout() {
+            try {
+                await fetch(`${API_URL}/api/register/logout`, { method: 'POST', credentials: 'include' });
+            } catch (err) {
+                console.error(err);
+            }
+            window.location.href = 'login.html';
+        }
+
+        window.onload = loadUserData;
+    </script>
+</body>
+</html>

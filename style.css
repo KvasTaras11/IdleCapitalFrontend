@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0e1113;
+}
+
+h2 {
+    color: black;
+    text-shadow: 3px 3px 2px #aad7ed;
+    font-size: 53px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__card {
+    width: 630px;
+    height: 400px;
+    background-color: #0e1113;
+    border-radius: 100px;
+    border: 3px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email__login {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.input__group  input {
+    width: 430px;
+    height: 50px;
+    border-radius: 20px;
+    padding-left: 30px;
+    background-color: #626161;
+    border: none;
+    font-size: 20px;
+    
+}
+
+.input__group input::placeholder {
+    color: #151f28;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+button {
+    width: 150px;
+    height: 70px;
+    border-radius: 20px;
+    background-color: #aad7ed;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 5;
+}
+
+hr {
+    position: absolute;
+    top: 52%;
+    width: 41%;
+    border: 2px solid white;
+    
+}
+
+.telegram__login {
+
+}
+
+.img__group img {
+    margin-top: 25px;
+    width: 64px;
+}

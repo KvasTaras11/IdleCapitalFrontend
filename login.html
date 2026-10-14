@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Capital — Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>IDLE CAPITAL</h2>
+    <div class="container">
+        <div class="login__card">
+            <div class="email__login">
+
+
+                <div class="input__group">
+                    <input type="text" id="loginInput" placeholder="Email or Phone">
+                </div>
+                <div class="input__group">
+                    <input type="password" id="password" placeholder="password">
+                </div>
+            </div>
+
+            <button onclick="login()">Login</button>
+                <hr>
+
+            <div class="telegram__login">
+                <div class="img__group">
+                    <a href="#">
+                        <img src="/Images/image 1.png" alt="Telegram">
+                    </a>
+                </div>
+            
+            </div>
+        </div>
+
+        <p>Don't have an account? <span><a href="register.html">Sing Up!</a></span></p>
+    </div>
+
+
+
+
+    <!-- <div class="card">
+        <h2>Вход в систему</h2>
+
+        <div class="input-group">
+            <label>Email или Телефон</label>
+            <input type="text" id="loginInput" placeholder="user@example.com">
+        </div>
+
+        <div class="input-group">
+            <label>Пароль</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <button onclick="login()">Войти</button>
+        <div id="error" class="error-msg"></div>
+
+        <a class="switch-link" href="register.html">Нет аккаунта? Зарегистрироваться</a>
+    </div> -->
+
+    <script>
+        const API_URL = 'https://localhost:7025'; // Укажите порт вашего API
+
+        async function login() {
+            const loginInput = document.getElementById('loginInput').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+            errorDiv.innerText = '';
+
+            try {
+                const res = await fetch(`${API_URL}/api/register/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ loginInput, passwordHash: password }),
+                    credentials: 'include'
+                });
+
+                if (res.ok) {
+                    // Перенаправляем на главный экран игры
+                    window.location.href = 'index.html';
+                } else {
+                    const text = await res.text();
+                    errorDiv.innerText = text || 'Неверный логин или пароль';
+                }
+            } catch (err) {
+                errorDiv.innerText = 'Ошибка соединения с сервером';
+                console.error(err);
+            }
+        }
+    </script>
+</body>
+</html>
