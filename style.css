@@ -4,6 +4,9 @@
 
 body {
     background-color: #0e1113;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h2 {
@@ -21,7 +24,7 @@ h2 {
 
 .login__card {
     width: 630px;
-    height: 400px;
+    height: 350px;
     background-color: #0e1113;
     border-radius: 100px;
     border: 3px solid white;
@@ -66,6 +69,13 @@ button {
     z-index: 5;
 }
 
+.item-button{
+    background-color: rgb(255, 0, 0);
+    border-radius: 20px;
+    width: 150px;
+    height: 70px;
+}
+
 hr {
     position: absolute;
     top: 52%;
@@ -79,9 +89,14 @@ hr {
 }
 
 .img__group img {
-    margin-top: 25px;
-    width: 64px;
+    margin-top: 15px;
+    width: 55px;
 }
+
+
+
+
+/* REGISTER */
 
 
 
@@ -89,13 +104,13 @@ hr {
     position: relative;
     width: 520px;
     max-width: calc(100vw - 32px);
-    height: 546px;
+    height: 370px;
 }
 
 .register__card .email__login {
     margin-top: 54px;
     gap: 20px;
-    width: 310px;
+    width: 400px;
     max-width: calc(100% - 48px);
 }
 
@@ -103,6 +118,7 @@ hr {
     width: 100%;
     border-radius: 16px;
     padding-left: 16px;
+    height: 45px;
 }
 
 .register__card button {
@@ -133,4 +149,15 @@ hr {
     color: #aad7ed;
     text-align: center;
     overflow-wrap: anywhere;
+}
+
+.link {
+    color: #aad7ed;
+    font-size: 20px;
+    margin-top: 70px;
+}
+
+.link span a {
+    text-decoration: none;
+    color: #aad7ed;
 }

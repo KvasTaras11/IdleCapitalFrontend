@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idle Capital — register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <h2>IDLE CAPITAL</h2>
@@ -25,10 +25,15 @@
                 </div>
             </div>
             <button type="button" onclick="register()">Sign up</button>
-            <hr aria-hidden="true">
             <div id="error" class="error-msg" role="alert" aria-live="polite"></div>
         </div>
+
+        
     </div>
+
+    <p class="link">Do you have an account? <span><a href="../login/login.html">Login!</a></span></p>
+
+    
 
 
 
@@ -65,9 +70,9 @@
 
         <a class="switch-link" href="login.html">Уже есть аккаунт? Войти</a>
     </div> -->
-
+    <script src="../config.js"></script>
     <script>
-        const API_URL = 'https://localhost:7025'; // Укажите порт вашего API
+        const API_URL = CONFIG.API_URL; // Укажите порт вашего API
 
         async function register() {
             const nickname = document.getElementById('nickname').value;
@@ -81,13 +86,16 @@
                 const res = await fetch(`${API_URL}/api/register/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nickname, email, phone, passwordHash: password }),
+                    body: JSON.stringify({ 
+                        nickname: nickname, 
+                        email: email, 
+                        phone: phone, 
+                        password: password }),
                     credentials: 'include'
                 });
 
                 if (res.ok) {
-                    alert('Регистрация успешна! Теперь войдите в систему.');
-                    window.location.href = 'login.html';
+                    window.location.href = '/homePage/index.html';
                 } else {
                     const text = await res.text();
                     errorDiv.innerText = text || 'Ошибка регистрации';

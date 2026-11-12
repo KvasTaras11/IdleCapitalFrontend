@@ -23,6 +23,7 @@
             </div>
 
             <button onclick="login()">Login</button>
+            <div id="error" class="error-msg" role="alert"></div>
                 <hr>
 
             <div class="telegram__login">
@@ -35,8 +36,10 @@
             </div>
         </div>
 
-        <p>Don't have an account? <span><a href="register.html">Sing Up!</a></span></p>
+        
     </div>
+
+    <p class="link">Don't have an account? <span><a href="register.html">Sign Up!</a></span></p>
 
 
 
@@ -59,7 +62,7 @@
 
         <a class="switch-link" href="register.html">Нет аккаунта? Зарегистрироваться</a>
     </div> -->
-
+    <script src=""></script>
     <script>
         const API_URL = 'https://localhost:7025'; // Укажите порт вашего API
 
@@ -73,13 +76,13 @@
                 const res = await fetch(`${API_URL}/api/register/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ loginInput, passwordHash: password }),
+                    body: JSON.stringify({ loginInput: loginInput, password: password }),
                     credentials: 'include'
                 });
 
                 if (res.ok) {
                     // Перенаправляем на главный экран игры
-                    window.location.href = 'index.html';
+                    window.location.href = 'homePage/index.html';
                 } else {
                     const text = await res.text();
                     errorDiv.innerText = text || 'Неверный логин или пароль';

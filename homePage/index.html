@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Capital — Главная</title>
+    <link rel="stylesheet" href="/homePage/index.css">
+</head>
+<body>
+    <section class="cards">
+    <!-- Первая карточка (пустая) -->
+    <div class="card1">
+        <div class="container">
+            
+        </div>
+    </div>
+
+    <!-- Вторая карточка (основная) -->
+    <div class="card2">
+        <div class="container">
+            <h2>CAPITAL</h2>
+            
+                <div class="balance-card">
+                    <div class="balance">
+                        <div class="card-text-block">
+                            <div class="card-text">
+                                <h3 class="card-network">LISA</h3>
+                                <h4 class="card-status">Debit</h4>
+                            </div>
+                            <div class="balance-container">
+                                <p>$<span id="balance"></span></p>
+                            </div>
+                            <div class="num-income-block">
+                                <div class="num-income">
+                                    <p class="paycard-num">* * * *   4752</p>
+                                    <p class="income-hour">+$<span id="#"></span>/ hour</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="level">
+                    <div class="level__card">
+                        <div class="level__card-text">
+                            <p class="level__card-name">
+                                <span id="levelNumber"></span> / <span id="levelName"></span>
+                            </p>
+                            <p class="xp">
+                                <span id="myXP"></span> / <span id="requiredXP"></span>
+                            </p>
+                        </div>
+                        <div class="level__line">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="button">
+                    <div class="button__area" onclick="doClick()">
+                        <p class="income">
+                            <span class="income__amount">+$ <span id="income"></span></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Третья карточка (пустая) -->
+        <div class="card3">
+            <div class="container">
+                <h2>Shop</h2>
+                <!-- <div class="balance__card">
+                    <p class="balance__text">Available for buying</p>
+                    <p>$<span id="balance"></span></p>
+                </div> -->
+
+
+                <div class="tabs-container">
+                    <button class="tab-btn" onclick="switchTab('garages')">Garage</button>
+                    <button class="tab-btn" onclick="switchTab('realestate')">Real Estate</button>
+                    <button class="tab-btn" onclick="switchTab('status')">Status</button>
+                </div>
+
+                <div id="garages-content" class="tab-content">
+
+                    <div class="card-item">
+                        <div class="card-tag">Garage / 01</div>
+                        <img src="/Images/photo_2026-10-17_14-05-56-removebg-preview.png" alt="mercedes amg one">
+                        <h3>AMG One</h3>
+                        <!-- <p>$ 85 000</p> -->
+                        <button type="button" class="item-button" id="openShop">More</button>
+                    </div>
+
+                </div>
+
+                <div id="realestate-content" class="tab-content hidden">
+
+                    <div class="card-item">
+                        <div class="card-tag">Real Estate / 02</div>
+                        <img src="#" alt="Flat in New York">
+                        <h3>Flat in New York</h3>
+                        <p>$ 1 000 000</p>
+                        <button type="button" class="item-button">Buy flat</button>
+                    </div>
+
+                </div>
+
+                <div id="status-content" class="tab-content hidden">
+
+                    <div class="card-item">
+                        <div class="card-tag">Status / 03</div>
+                        <img src="#" alt="Rolex">
+                        <h3>Rolex</h3>
+                        <p>$ 15 000</p>
+                        <button type="button" class="item-button">Buy rolex</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+            
+            
+
+
+    <dialog id="shopDialog" class="shop-dialog" aria-labelledby="shopDialogTitle">
+    <header class="shop-dialog__header">
+        <div>
+            <h2 id="shopDialogTitle">Shop</h2>
+            <p>
+                Available balance: $<span id="shopDialogBalance">0</span>
+            </p>
+        </div>
+
+        <button
+            id="closeShop"
+            type="button"
+            aria-label="Close shop"
+        >
+            ×
+        </button>
+    </header>
+
+    <nav class="shop-tabs" aria-label="Shop categories">
+        <button type="button" class="shop-tab" data-shop-tab="garage" aria-pressed="true">
+            Garage
+        </button>
+        <button type="button" class="shop-tab" data-shop-tab="apartments" aria-pressed="false">
+            Apartments
+        </button>
+        <button type="button" class="shop-tab" data-shop-tab="status" aria-pressed="false">
+            Status
+        </button>
+    </nav>
+
+    <section class="shop-panel" data-shop-panel="garage">
+        <h3>Garage</h3>
+        <article class="shop-item">
+            <img
+                src="../Images/photo_2026-10-17_14-05-56-removebg-preview.png"
+                alt="Mercedes-AMG One"
+            >
+            <h4>AMG One</h4>
+            <p>Price: $85,000</p>
+            <button type="button" disabled >Buy</button>
+        </article>
+    </section>
+
+    <section class="shop-panel" data-shop-panel="apartments" hidden>
+        <h3>Apartments</h3>
+        <article class="shop-item">
+            <h4>Flat in New York</h4>
+            <p>Price: $1,000,000</p>
+            <button type="button" disabled>Buy</button>
+        </article>
+    </section>
+
+    <section class="shop-panel" data-shop-panel="status" hidden>
+        <h3>Status</h3>
+        <article class="shop-item">
+            <h4>Rolex</h4>
+            <p>Price: $15,000</p>
+            <button type="button" disabled>Buy</button>
+        </article>
+    </section>
+</dialog>
+
+
+   <!-- <div class="card">
+        <h2>Idle Capital</h2>
+        
+        <div class="stat-box">
+            <div style="font-size: 0.85rem; color: #94a3b8;">Баланс</div>
+            <div class="stat-value" id="balance">$0</div>
+        </div>
+
+        <div class="stat-box">
+            <div>Уровень клика: <span id="level">1</span></div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 4px;">
+                След. уровень: <span id="next-cost">200</span>
+            </div>
+        </div>
+
+        <button class="btn-click" onclick="doClick()">КЛИК!</button>
+
+        <button onclick="logout()" style="background: #ef4444; margin-top: 10px;">Выйти</button>
+    </div> -->
+    <script src="../config.js"></script>
+    <script>
+
+        const shopDialog = document.getElementById('shopDialog');
+const openShopButton = document.getElementById('openShop');
+const closeShopButton = document.getElementById('closeShop');
+
+openShopButton.addEventListener('click', () => {
+    shopDialog.showModal();
+});
+
+closeShopButton.addEventListener('click', () => {
+    shopDialog.close();
+});
+
+const shopTabButtons = document.querySelectorAll('[data-shop-tab]');
+const shopPanels = document.querySelectorAll('[data-shop-panel]');
+
+shopTabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const selectedCategory = button.dataset.shopTab;
+
+        shopTabButtons.forEach(tab => {
+            const isSelected = tab === button;
+            tab.setAttribute('aria-pressed', String(isSelected));
+        });
+
+        shopPanels.forEach(panel => {
+            panel.hidden = panel.dataset.shopPanel !== selectedCategory;
+        });
+    });
+});
+
+        // section
+
+        // Функция переключения вкладок
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            if(tabName === 'garages') {
+                document.getElementById('garages-content').classList.remove('hidden');
+                // Находим кнопку гаража и делаем активной
+                document.querySelector('[onclick*="garages"]').classList.add('active');
+            } else if (tabName === 'realestate') {
+                document.getElementById('realestate-content').classList.remove('hidden');
+                document.querySelector('[onclick*="realestate"]').classList.add('active');
+            } else if (tabName === 'status') {
+                document.getElementById('status-content').classList.remove('hidden');
+                document.querySelector('[onclick*="status"]').classList.add('active');
+            }
+
+            localStorage.setItem('selectedTab', tabName);
+        }
+
+        // Единая точка входа при загрузке страницы
+        window.onload = async function() {
+            await loadUserData(); // Загружаем данные пользователя с бэкенда
+
+            // Восстанавливаем вкладку из localStorage (исправлено saveTab -> savedTab)
+            const savedTab = localStorage.getItem('selectedTab');
+            if(savedTab) {
+                switchTab(savedTab);
+            } else {
+                switchTab('garages'); // По умолчанию гараж
+            }
+        };
+
+
+
+
+
+
+
+
+        // API
+        
+
+        const API_URL = CONFIG.API_URL; // Укажите порт вашего API
+
+        // При загрузке страницы проверяем сессию
+        async function loadUserData() {
+            try {
+                const res = await fetch(`${API_URL}/api/home/me`, { credentials: 'include' });
+                if (res.ok) {
+                    const data = await res.json();
+                    updateUI(data.balance, data.currentLevel, data.nextLevelCost, data.currentLevelName, data.clickPower, data.levelName, data.income);
+                } else {
+                    // Если не авторизован — кидаем на страницу входа
+                    window.location.href = '/login/login.html';
+                }
+            } catch (err) {
+                console.error('Ошибка загрузки данных', err);
+            }
+        }
+
+        async function doClick() {
+            try {
+                const res = await fetch(`${API_URL}/api/home/click`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    updateUI(data.balance, data.currentLevel, data.nextLevelCost, data.currentLevelName, data.clickPower, data.levelName, data.income);
+                } else if (res.status === 401) {
+                    window.location.href = '/login/login.html';
+                }
+            } catch (err) {
+                console.error('Ошибка клика', err);
+            }
+        }
+
+        function updateUI(balance, level, nextCost, levelName, clickPower) {
+    document.querySelectorAll('#balance').forEach(el => {
+        el.innerText = balance;
+    });
+
+    document.getElementById('levelNumber').innerText = level;
+    document.getElementById('levelName').innerText = levelName;
+    document.getElementById('myXP').innerText = balance;
+    document.getElementById('requiredXP').innerText = nextCost;
+    document.getElementById('income').innerText = clickPower;
+    document.getElementById('balance').textContent = balance;
+document.getElementById('shopCardBalance').textContent = balance;
+document.getElementById('shopDialogBalance').textContent = balance;
+}
+
+        async function logout() {
+            try {
+                await fetch(`${API_URL}/api/register/logout`, { method: 'POST', credentials: 'include' });
+            } catch (err) {
+                console.error(err);
+            }
+            window.location.href = 'login.html';
+        }
+
+        
+    </script>
+</body>
+</html>
